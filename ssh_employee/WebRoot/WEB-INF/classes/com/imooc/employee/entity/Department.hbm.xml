@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.imooc.employee.entity.Department" table="department">
+		<id name="did" column="did">
+			<generator class="native"></generator>
+		</id>
+		<property name="dname" length="20"></property>
+		<property name="ddesc" length="200"></property>
+		
+		<!-- 关联关系映射 -->
+		<!-- cascade是用来级联删除的  inverse是用来放弃外键维护权的 -->
+		<set name="employees" cascade="delete" inverse="true">
+			<!--外键的名称 -->
+			<key column="dno"></key>
+			<one-to-many class="com.imooc.employee.entity.Employee"/>
+		</set>
+	</class>
+</hibernate-mapping>
